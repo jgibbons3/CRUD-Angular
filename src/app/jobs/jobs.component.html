@@ -19,7 +19,7 @@
         <button *ngIf="edit_job!=job.job_id" id="button" class="button" (click)="editJob(job.job_id)">Edit</button> 
 
         <button *ngIf="edit_job===job.job_id" id="button" class="button" (click)="cancelEditJob()">Cancel</button>
-        <button *ngIf="edit_job===job.job_id" id="button" class="button" (click)="modifyJob(job.job_id)">Accept</button> 
+        <button *ngIf="edit_job===job.job_id" id="button" class="button" (click)="modifyJob(job.job_id, job.compay_name)">Accept</button> 
 </div>        
 
 

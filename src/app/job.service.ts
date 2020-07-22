@@ -22,5 +22,9 @@ export class JobService {
     return this.http.post<Job>("http://localhost:8000/jobs/", job)
   }
 
+  editJob(job: Job): Observable<Job> {
+    return this.http.patch<Job>(`http://localhost:8000/jobs/${job.job_id}/`, job)
+  }
+
   constructor(private http: HttpClient) { }
 }

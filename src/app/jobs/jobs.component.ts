@@ -48,8 +48,12 @@ export class JobsComponent implements OnInit {
     this.edit_job = null
   }
 
-  modifyJob(job_id: number): void {
-    console.log("number", job_id)
+  modifyJob(job_id: number, compName: string): void {
+    let newJob: Job = {
+      job_id: job_id,
+      compay_name: compName,
+    }
+    this.jobService.editJob(newJob).subscribe()
     this.edit_job = null
   }
 
