@@ -1,0 +1,6 @@
+
+<p *ngFor="let job of jobs">
+    {{job.job_id}} {{job.compay_name}}
+    <button (click)="deleteJob(job.job_id)">Delete</button>
+</p>
+
