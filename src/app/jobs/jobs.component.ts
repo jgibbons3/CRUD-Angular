@@ -11,7 +11,8 @@ import { JobService } from '../job.service';
 export class JobsComponent implements OnInit {
   jobs: Job[];
   display_window: boolean;
-  edit_job: number;
+  edit_job: Job;
+  oldValue: string;
   
   constructor(private jobService: JobService) {
     this.display_window = false;
@@ -32,34 +33,36 @@ export class JobsComponent implements OnInit {
     }
   }
 
-  createJob(): void {
+  createJob() {
     this.display_window = true;
   }
 
-  cancelAddJob():void {
+  cancelAddJob() {
     this.display_window = false;
   }
 
-  editJob(job_id: number) {
-    this.edit_job = job_id
+  editJob(job: Job) {
+    this.edit_job = job
+    this.oldValue = job.compay_name
   }
 
-  cancelEditJob(): void {
+  cancelEditJob() {
+    this.edit_job.compay_name = this.oldValue
     this.edit_job = null
   }
 
-  modifyJob(job_id: number, compName: string): void {
+  modifyJob(job: Job, compName: string): void {
     let newJob: Job = {
-      job_id: job_id,
+      job_id: job.job_id,
       compay_name: compName,
     }
-    this.jobService.editJob(newJob).subscribe()
+    this.jobService.editJob(newJob).subscribe(job => console.log("hola desde edit", job))
     this.edit_job = null
   }
 
-  async deleteJob(job_id) {
-    await this.jobService.deleteJob(job_id).toPromise()
-    this.jobs = this.jobs.filter(job => job.job_id !== job_id)
+  async deleteJob(job: Job) {
+    await this.jobService.deleteJob(job.job_id).toPromise()
+    this.jobs = this.jobs.filter(job => job.job_id !== job.job_id)
   }
 
   ngOnInit() {

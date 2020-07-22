@@ -11,15 +11,15 @@
 
 
 <div class="each_job" *ngFor="let job of jobs">   
-        <div *ngIf="edit_job!=job.job_id"> {{job.compay_name}} </div>
-        <input *ngIf="edit_job===job.job_id" [(ngModel)]="job.compay_name" />
+        <div *ngIf="edit_job!=job"> {{job.compay_name}} </div>
+        <input *ngIf="edit_job===job" [(ngModel)]="job.compay_name"/>
 
 
-        <button *ngIf="edit_job!=job.job_id" id="button" class="button" (click)="deleteJob(job.job_id)">Delete</button>
-        <button *ngIf="edit_job!=job.job_id" id="button" class="button" (click)="editJob(job.job_id)">Edit</button> 
+        <button *ngIf="edit_job!=job" id="button" class="button" (click)="deleteJob(job)">Delete</button>
+        <button *ngIf="edit_job!=job" id="button" class="button" (click)="editJob(job)">Edit</button> 
 
-        <button *ngIf="edit_job===job.job_id" id="button" class="button" (click)="cancelEditJob()">Cancel</button>
-        <button *ngIf="edit_job===job.job_id" id="button" class="button" (click)="modifyJob(job.job_id, job.compay_name)">Accept</button> 
+        <button *ngIf="edit_job===job" id="button" class="button" (click)="cancelEditJob()">Cancel</button>
+        <button *ngIf="edit_job===job" id="button" class="button" (click)="modifyJob(job, job.compay_name)">Accept</button> 
 </div>        
 
 
