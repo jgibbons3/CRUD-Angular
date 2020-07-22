@@ -18,6 +18,9 @@ export class JobService {
     return this.http.delete<Job>(`http://localhost:8000/jobs/${job_id}`)
   }
 
+  addJob(job: Job): Observable<Job> {
+    return this.http.post<Job>("http://localhost:8000/jobs/", job)
+  }
 
   constructor(private http: HttpClient) { }
 }

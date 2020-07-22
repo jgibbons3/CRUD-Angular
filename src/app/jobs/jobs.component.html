@@ -1,6 +1,20 @@
+<div class="add_button_container">
+    <button class="button" (click)="createJob()">Add new job</button>
+</div>
 
-<p *ngFor="let job of jobs">
-    {{job.job_id}} {{job.compay_name}}
-    <button (click)="deleteJob(job.job_id)">Delete</button>
-</p>
+<div class="add_job_container" *ngIf="display_window">
+    <input #new_company_name>
+    <button id="button" class="button" (click)="addJob(new_company_name.value)">Add</button>
+    <button id="button" class="button" (click)="cancelAddJob()">Cancel</button>
+</div>  
+
+<div>
+    <p class="each_job" *ngFor="let job of jobs">
+        {{job.compay_name}}
+        
+        <button id="button" class="button" (click)="deleteJob(job.job_id)">Delete</button>
+        <button id="button" class="button" (click)="editJob(job.job_id)">Edit</button>
+    </p>        
+</div>
+
 
