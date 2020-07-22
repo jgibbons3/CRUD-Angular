@@ -11,9 +11,11 @@ import { JobService } from '../job.service';
 export class JobsComponent implements OnInit {
   jobs: Job[];
   display_window: boolean;
-
+  edit_job: number;
+  
   constructor(private jobService: JobService) {
     this.display_window = false;
+    this.edit_job = null;
   }
 
   getJobs(): void {
@@ -25,10 +27,8 @@ export class JobsComponent implements OnInit {
       let newJob: Job = {
         compay_name: new_company_name,
       }
-      console.log("add new job", newJob)
       this.jobService.addJob(newJob).subscribe(job => this.jobs = [job, ...this.jobs])
       this.display_window = false;
-
     }
   }
 
@@ -40,8 +40,17 @@ export class JobsComponent implements OnInit {
     this.display_window = false;
   }
 
-  editJob(job_id) {
-    console.log("hola desde edit job")
+  editJob(job_id: number) {
+    this.edit_job = job_id
+  }
+
+  cancelEditJob(): void {
+    this.edit_job = null
+  }
+
+  modifyJob(job_id: number): void {
+    console.log("number", job_id)
+    this.edit_job = null
   }
 
   async deleteJob(job_id) {
