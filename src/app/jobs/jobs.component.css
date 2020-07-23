@@ -30,3 +30,8 @@ button#button.button {
     display: flex;
     flex-direction: row;
 }
+
+.job_card {
+    display: flex;
+    flex-direction: row;
+}
